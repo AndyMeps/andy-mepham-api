@@ -3,35 +3,34 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Models\Job;
-use AppBundle\Models\Skill;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Validator\Constraints\Date;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class CvController extends Controller
+class JobController extends Controller
 {
     /**
-     * @Route("/cv/skills", name="cv_skills")
+     * @var array
+     */
+    public $jobs;
+
+    /**
+     * @Route("/jobs", name="jobs_get_all")
      * @Method("GET")
      * @return JsonResponse
      */
-    public function getSkills()
+    public function getAll()
     {
-        $skills = [new Skill('Symfony', 0)];
-
-        return new JsonResponse($skills);
+        return new JsonResponse($this->jobs);
     }
 
     /**
-     * @Route("/cv/experience", name="cv_experience")
-     * @Method("GET")
-     * @return JsonResponse
+     * JobController constructor.
      */
-    public function getExperience()
+    public function __construct()
     {
-        $experience = [
+        $this->jobs = [
             new Job(
                 'Software Developer',
                 'Parenta Group',
@@ -47,7 +46,5 @@ class CvController extends Controller
                 '2014-12-31T00:00:00.000',
                 'Front end and data services development with .NET technologies, working with ASP.NET forms, Windows Services and SQL Server 2008 databases.'),
         ];
-
-        return new JsonResponse($experience);
     }
 }
