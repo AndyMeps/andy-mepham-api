@@ -31,7 +31,18 @@ class QualificationController extends Controller
     public function __construct()
     {
         $this->qualifications = [
-            new Qualification("BSc (Hons) Database Administration and Management", "Staffordshire University", 2009, 2013)
+            new Qualification(
+                "BSc (Hons) Database Administration and Management",
+                "Staffordshire University",
+                2009,
+                2013
+            ),
+            new Qualification(
+                "BTEC National Diploma for IT Practitioners",
+                "Canterbury College",
+                2007,
+                2009
+            )
         ];
     }
 }
